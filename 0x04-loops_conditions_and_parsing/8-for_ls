@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
-#Creating a script that lists files
-files="$(ls)"
-for file in $files;
+# Displays the contents of the current directory in list format.
+#   Only displays the part of the name after the first dash. 
+
+list=$(ls)
+for content in $list; 
 do
-    echo "$file" | cut -f 2- -d '-'
+  echo "$content" | cut -d '-' -f2
 done
