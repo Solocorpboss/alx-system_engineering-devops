@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # get all network interfaces
 interfaces=$(ip link show | awk -F: '$0 !~ "lo|vir|^[^0-9]"{print $2;getline}')
