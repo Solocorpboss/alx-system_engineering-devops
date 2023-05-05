@@ -1,12 +1,4 @@
 #!/usr/bin/env bash
+# Displays all acive IPv4 addresses on the machine.
 
-# get all network interfaces
-interfaces=$(ip link show | awk -F: '$0 !~ "lo|vir|^[^0-9]"{print $2;getline}')
-
-# loop through each interface and get its IPv4 address
-for interface in $interfaces; do
-    ipv4=$(ip addr show $interface | grep "inet " | awk '{print $2}')
-    if [ ! -z "$ipv4" ]; then
-        echo "$interface: $ipv4"
-    fi
-done
+ifconfig | grep -Eo "inet (addr:)?([0-9]*\.){3}[0-9]*" | cut -b 11-
